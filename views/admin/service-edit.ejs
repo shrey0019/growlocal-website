@@ -1,0 +1,34 @@
+<%- include('../partials/head') %>
+<%- include('../partials/nav') %>
+<div class="admin-shell">
+  <%- include('../partials/admin-side') %>
+  <div class="admin-main">
+    <h1>Edit service</h1>
+    <p class="admin-sub">Changes go live on the site immediately.</p>
+    <div class="panel">
+      <form method="POST" action="/admin/services/<%= service.id %>">
+        <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" value="<%= service.name %>" required></div>
+        <div class="field"><label for="f-short">Short line</label><input id="f-short" name="short" value="<%= service.short %>" required></div>
+        <div class="field"><label for="f-desc">Description</label><textarea id="f-desc" name="description" required><%= service.description %></textarea></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px;">
+          <div class="field"><label for="f-price">Starting price (₹)</label><input id="f-price" name="price_from" type="number" min="0" value="<%= service.price_from %>" required></div>
+          <div class="field"><label for="f-unit">Price unit</label><input id="f-unit" name="price_unit" value="<%= service.price_unit %>" required></div>
+        </div>
+        <div class="field"><label for="f-note">Price note</label><input id="f-note" name="price_note" value="<%= service.price_note %>" required></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px;">
+          <div class="field"><label for="f-time">Timeline</label><input id="f-time" name="timeline" value="<%= service.timeline %>" required></div>
+          <div class="field"><label for="f-badge">Badge <span style="color:var(--dim); font-weight:400;">(optional)</span></label><input id="f-badge" name="badge" value="<%= service.badge || '' %>"></div>
+        </div>
+        <div class="field"><label for="f-feats">Included features (one per line)</label><textarea id="f-feats" name="features"><%= service.features %></textarea></div>
+        <div class="field"><label style="display:flex; gap:10px; align-items:center; cursor:pointer;"><input type="checkbox" name="active" value="1" <%= service.active ? 'checked' : '' %> style="width:auto;"> Show on site</label></div>
+        <div style="display:flex; gap:12px;">
+          <button class="btn btn-primary btn-sm" type="submit">Save changes</button>
+          <a class="btn btn-ghost btn-sm" href="/admin/services">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="/js/main.js" defer></script>
+</body>
+</html>

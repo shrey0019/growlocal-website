@@ -1,0 +1,34 @@
+<%- include('../partials/head') %>
+<%- include('../partials/nav') %>
+
+<main>
+  <section style="padding:150px 0 90px; position:relative;">
+    <div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b3"></div></div>
+    <div class="wrap" style="position:relative; z-index:2">
+      <div class="form-card reveal">
+        <span class="eyebrow">Get started</span>
+        <h1 style="font-size:2rem; margin-bottom:10px;">Create your free account</h1>
+        <p class="psub" style="color:var(--muted); margin-bottom:28px;">Request services, track orders, and talk to us directly. No card required.</p>
+        <% if (err) { %><div class="alert err" role="alert"><%= err %></div><% } %>
+        <form method="POST" action="/signup">
+          <div class="field">
+            <label for="s-name">Your name</label>
+            <input id="s-name" name="name" type="text" required autocomplete="name" placeholder="e.g. Rohan Sharma">
+          </div>
+          <div class="field">
+            <label for="s-email">Email</label>
+            <input id="s-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+          </div>
+          <div class="field">
+            <label for="s-pass">Password <span style="color:var(--dim); font-weight:400;">(min 6 characters)</span></label>
+            <input id="s-pass" name="password" type="password" required minlength="6" autocomplete="new-password" placeholder="Choose a password">
+          </div>
+          <button class="btn btn-primary" type="submit" style="width:100%; justify-content:center">Create account <span class="arr">→</span></button>
+        </form>
+        <p class="form-note">Already have one? <a href="/login">Log in</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,46 @@
+<%- include('../partials/head') %>
+<%- include('../partials/nav') %>
+<div class="admin-shell">
+  <%- include('../partials/admin-side') %>
+  <div class="admin-main">
+    <h1>Orders</h1>
+    <p class="admin-sub">Update a status when work moves forward. Customers see the change in their dashboard instantly.</p>
+    <% if (ok) { %><div class="alert ok" role="status"><%= ok %></div><% } %>
+    <% if (err) { %><div class="alert err" role="alert"><%= err %></div><% } %>
+    <div class="panel">
+      <% if (orders.length === 0) { %>
+      <div class="empty"><div class="big-e">🧾</div><p>No orders yet.</p></div>
+      <% } else { %>
+      <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>#</th><th>Customer</th><th>Service</th><th>Brief</th><th>Status</th><th>Change</th></tr></thead>
+        <tbody>
+          <% orders.forEach(function(o) { %>
+          <tr>
+            <td><b>#<%= o.id %></b></td>
+            <td><%= o.user_name %><br><span style="color:var(--dim); font-size:0.82rem"><%= o.user_email %></span></td>
+            <td><%= o.service_name %></td>
+            <td style="max-width:260px"><%= o.details %></td>
+            <td><span class="status <%= o.status.replace(' ', '') %>"><%= o.status %></span></td>
+            <td>
+              <form method="POST" action="/admin/orders/<%= o.id %>/status" style="display:flex; gap:8px;">
+                <select name="status" aria-label="Change status for order <%= o.id %>">
+                  <% statuses.forEach(function(st) { %>
+                  <option value="<%= st %>" <%= st === o.status ? 'selected' : '' %>><%= st %></option>
+                  <% }); %>
+                </select>
+                <button class="mini-btn" type="submit">Save</button>
+              </form>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+<script src="/js/main.js" defer></script>
+</body>
+</html>

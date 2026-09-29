@@ -1,0 +1,53 @@
+<%- include('../partials/head') %>
+<%- include('../partials/nav') %>
+
+<main>
+  <section class="hero" style="min-height:60svh; padding-bottom:50px;">
+    <div class="aurora" aria-hidden="true">
+      <div class="blob b1" data-parallax="0.12"></div>
+      <div class="blob b2" data-parallax="-0.08"></div>
+    </div>
+    <div class="wrap" style="position:relative; z-index:2">
+      <span class="eyebrow reveal">Pricing</span>
+      <h1 class="reveal"><span class="kinetic">Honest prices,</span> <span class="kinetic"><span class="grad-text">printed</span> on the page.</span></h1>
+      <p class="lead reveal" style="--d:0.15s">No "contact us for a quote" games. These are real starting prices. Your final quote is fixed in writing before any work begins, and it never moves.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:20px;">
+    <div class="wrap">
+      <div class="price-grid" style="margin-top:0">
+        <% services.forEach(function(s, i) { %>
+        <div class="price-card reveal <%= s.badge === 'Most popular' ? 'featured' : '' %>" style="--d:<%= (i % 3) * 0.1 %>s">
+          <% if (s.badge) { %><span class="badge-flag"><%= s.badge %></span><% } %>
+          <h3><%= s.name %></h3>
+          <p class="pshort"><%= s.short %></p>
+          <div class="amount"><%= fmtINR(s.price_from) %> <small><%= s.price_unit %></small></div>
+          <p class="pnote"><%= s.price_note %></p>
+          <a class="btn <%= s.badge === 'Most popular' ? 'btn-primary' : 'btn-ghost' %>" href="/services/<%= s.slug %>" style="justify-content:center">Details <span class="arr">→</span></a>
+        </div>
+        <% }); %>
+      </div>
+
+      <div class="panel reveal" style="margin-top:70px;">
+        <h2>How our pricing works</h2>
+        <p class="psub">Three rules we never break.</p>
+        <ul class="check-list">
+          <li><span class="tick">✓</span><span><b>Fixed before we start.</b> You approve a written quote with the full scope. That number does not change.</span></li>
+          <li><span class="tick">✓</span><span><b>No payment needed to request.</b> Create an account, describe your business, get your plan. Pay only when you approve it.</span></li>
+          <li><span class="tick">✓</span><span><b>Small businesses first.</b> If a service is overkill for where you are right now, we will tell you and suggest the cheaper option.</span></li>
+        </ul>
+      </div>
+
+      <div class="cta-band reveal" style="margin-top:40px;">
+        <div style="position:relative; z-index:2">
+          <h2>Still comparing?</h2>
+          <p>Book a free consultation and we will give you a straight answer on what your business actually needs, even if the answer is "nothing from us right now".</p>
+          <a class="btn btn-primary" href="/contact">Free consultation <span class="arr">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,31 @@
+<%- include('../partials/head') %>
+<%- include('../partials/nav') %>
+
+<main>
+  <section style="padding:150px 0 90px; position:relative;">
+    <div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div></div>
+    <div class="wrap" style="position:relative; z-index:2">
+      <div class="form-card reveal">
+        <span class="eyebrow">Welcome back</span>
+        <h1 style="font-size:2rem; margin-bottom:10px;">Log in</h1>
+        <p class="psub" style="color:var(--muted); margin-bottom:28px;">Track your orders and request new services.</p>
+        <% if (ok) { %><div class="alert ok" role="status"><%= ok %></div><% } %>
+        <% if (err) { %><div class="alert err" role="alert"><%= err %></div><% } %>
+        <form method="POST" action="/login">
+          <div class="field">
+            <label for="l-email">Email</label>
+            <input id="l-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+          </div>
+          <div class="field">
+            <label for="l-pass">Password</label>
+            <input id="l-pass" name="password" type="password" required autocomplete="current-password" placeholder="Your password">
+          </div>
+          <button class="btn btn-primary" type="submit" style="width:100%; justify-content:center">Log in <span class="arr">→</span></button>
+        </form>
+        <p class="form-note">New here? <a href="/signup">Create a free account</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>

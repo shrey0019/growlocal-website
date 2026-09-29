@@ -1,0 +1,47 @@
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="logo" href="/"><span class="logo-mark" aria-hidden="true">G</span><%= brand.name %></a>
+        <p class="foot-about"><%= brand.tagline %>. Built for coaches, gyms, salons, clinics, institutes and shops that want more customers without the agency drama.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="/services/short-form-video-editing">Reel editing</a></li>
+          <li><a href="/services/whatsapp-business-automation">WhatsApp automation</a></li>
+          <li><a href="/services/social-media-management">Social media</a></li>
+          <li><a href="/services/business-websites">Websites</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/work">Sample work</a></li>
+          <li><a href="/pricing">Pricing</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Account</h4>
+        <ul>
+          <% if (user) { %>
+            <li><a href="<%= user.role === 'admin' ? '/admin' : '/dashboard' %>">My dashboard</a></li>
+          <% } else { %>
+            <li><a href="/login">Log in</a></li>
+            <li><a href="/signup">Create account</a></li>
+          <% } %>
+          <li><a href="/contact">Free consultation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 <%= brand.name %>. All rights reserved.</span>
+      <span><%= brand.city %> · <%= brand.email %></span>
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js" defer></script>
+</body>
+</html>

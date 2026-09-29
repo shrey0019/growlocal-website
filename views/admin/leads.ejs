@@ -1,0 +1,41 @@
+<%- include('../partials/head') %>
+<%- include('../partials/nav') %>
+<div class="admin-shell">
+  <%- include('../partials/admin-side') %>
+  <div class="admin-main">
+    <h1>Leads</h1>
+    <p class="admin-sub">Messages from the contact form. Mark them handled once you have replied.</p>
+    <% if (ok) { %><div class="alert ok" role="status"><%= ok %></div><% } %>
+    <% if (err) { %><div class="alert err" role="alert"><%= err %></div><% } %>
+    <div class="panel">
+      <% if (leads.length === 0) { %>
+      <div class="empty"><div class="big-e">✉️</div><p>No leads yet. Share the contact page to change that.</p></div>
+      <% } else { %>
+      <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>#</th><th>From</th><th>Business</th><th>Message</th><th>Status</th><th></th></tr></thead>
+        <tbody>
+          <% leads.forEach(function(l) { %>
+          <tr>
+            <td><b>#<%= l.id %></b></td>
+            <td><%= l.name %><br><span style="color:var(--dim); font-size:0.82rem"><%= l.email %><br><%= l.phone %></span></td>
+            <td><%= l.business || 'Not given' %></td>
+            <td style="max-width:280px"><%= l.message %></td>
+            <td><span class="status <%= l.handled ? 'Completed' : 'Pending' %>"><%= l.handled ? 'Handled' : 'New' %></span></td>
+            <td>
+              <form method="POST" action="/admin/leads/<%= l.id %>/toggle">
+                <button class="mini-btn teal" type="submit"><%= l.handled ? 'Reopen' : 'Mark handled' %></button>
+              </form>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+<script src="/js/main.js" defer></script>
+</body>
+</html>

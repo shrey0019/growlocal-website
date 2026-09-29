@@ -1,0 +1,12 @@
+<aside class="sidebar">
+  <a class="side-link" href="/admin" style="font-family:var(--font-d); font-weight:700; color:var(--ink); font-size:1.05rem; margin-bottom:14px;"><span class="logo-mark" style="width:28px;height:28px;font-size:0.9rem;" aria-hidden="true">G</span>Admin</a>
+  <a class="side-link" href="/admin">📊 Dashboard</a>
+  <a class="side-link" href="/admin/orders">🧾 Orders</a>
+  <a class="side-link" href="/admin/users">👥 Users</a>
+  <a class="side-link" href="/admin/leads">✉️ Leads</a>
+  <a class="side-link" href="/admin/services">🛠️ Services</a>
+  <a class="side-link" href="/">🌐 View site</a>
+  <div class="side-foot">
+    <form method="POST" action="/logout"><button class="linklike" type="submit">⏻ Log out (<%= user.name %>)</button></form>
+  </div>
+</aside>

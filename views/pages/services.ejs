@@ -1,0 +1,44 @@
+<%- include('../partials/head') %>
+<%- include('../partials/nav') %>
+
+<main>
+  <section class="hero" style="min-height:62svh; padding-bottom:60px;">
+    <div class="aurora" aria-hidden="true">
+      <div class="blob b1" data-parallax="0.12"></div>
+      <div class="blob b2" data-parallax="-0.08"></div>
+    </div>
+    <div class="wrap" style="position:relative; z-index:2">
+      <span class="eyebrow reveal">Services</span>
+      <h1 class="reveal"><span class="kinetic">Seven services.</span> <span class="kinetic"><span class="grad-text">Zero</span> guesswork.</span></h1>
+      <p class="lead reveal" style="--d:0.15s">Every service below has a fixed starting price and a clear list of what you get. Click any card for the full breakdown.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:20px;">
+    <div class="wrap">
+      <div class="cards" style="margin-top:0">
+        <% const icons = {'short-form-video-editing':'🎬','whatsapp-business-automation':'💬','social-media-management':'📱','business-websites':'🌐','google-business-profile':'📍','lead-generation':'🎯','pitch-deck-design':'📊'}; %>
+        <% services.forEach(function(s, i) { %>
+        <a class="card reveal" style="--d:<%= (i % 3) * 0.1 %>s" href="/services/<%= s.slug %>">
+          <% if (s.badge) { %><span class="badge-flag"><%= s.badge %></span><% } %>
+          <div class="icon" aria-hidden="true"><%= icons[s.slug] || '✦' %></div>
+          <h3><%= s.name %></h3>
+          <p><%= s.short %></p>
+          <div class="price"><%= fmtINR(s.price_from) %> <small><%= s.price_unit %></small></div>
+          <span class="go">Full details <span class="arr">→</span></span>
+        </a>
+        <% }); %>
+      </div>
+
+      <div class="cta-band reveal" style="margin-top:90px;">
+        <div style="position:relative; z-index:2">
+          <h2>Need more than one thing?</h2>
+          <p>Most businesses start with two or three services together. Tell us what you are trying to achieve and we will suggest the smallest combination that gets you there.</p>
+          <a class="btn btn-primary" href="/contact">Talk to us <span class="arr">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>

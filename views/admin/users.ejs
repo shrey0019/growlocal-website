@@ -1,0 +1,30 @@
+<%- include('../partials/head') %>
+<%- include('../partials/nav') %>
+<div class="admin-shell">
+  <%- include('../partials/admin-side') %>
+  <div class="admin-main">
+    <h1>Users</h1>
+    <p class="admin-sub">Everyone with an account, newest first.</p>
+    <div class="panel">
+      <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Role</th><th>Joined</th></tr></thead>
+        <tbody>
+          <% users.forEach(function(u) { %>
+          <tr>
+            <td><b>#<%= u.id %></b></td>
+            <td><%= u.name %></td>
+            <td><%= u.email %></td>
+            <td><span class="status <%= u.role === 'admin' ? 'In Progress' : 'Completed' %>"><%= u.role %></span></td>
+            <td style="white-space:nowrap"><%= u.created_at.slice(0, 10) %></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/js/main.js" defer></script>
+</body>
+</html>

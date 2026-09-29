@@ -1,0 +1,64 @@
+<%- include('../partials/head') %>
+<%- include('../partials/nav') %>
+
+<main>
+  <section class="hero" style="min-height:60svh; padding-bottom:50px;">
+    <div class="aurora" aria-hidden="true">
+      <div class="blob b1" data-parallax="0.12"></div>
+      <div class="blob b3" data-parallax="0.18"></div>
+    </div>
+    <div class="wrap" style="position:relative; z-index:2">
+      <a href="/services" class="reveal" style="color:var(--muted); font-size:0.92rem; display:inline-block; margin-bottom:22px;">← All services</a>
+      <span class="eyebrow reveal">Service</span>
+      <h1 class="reveal"><span class="kinetic"><%= service.name %></span></h1>
+      <p class="lead reveal" style="--d:0.15s"><%= service.description %></p>
+      <div class="hero-ctas reveal" style="--d:0.25s; opacity:1; animation:none; margin-top:30px;">
+        <a class="btn btn-primary" href="/signup">Request this service <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="/pricing">See all pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:30px;">
+    <div class="wrap split">
+      <div class="reveal-l">
+        <span class="eyebrow">What you get</span>
+        <h2 class="section-title">Everything included, in writing</h2>
+        <ul class="check-list">
+          <% service.features.forEach(function(f) { %>
+          <li><span class="tick">✓</span><span><%= f %></span></li>
+          <% }); %>
+        </ul>
+      </div>
+      <div class="reveal-r">
+        <div class="panel">
+          <h2>Honest pricing</h2>
+          <p class="psub">No hourly meters running in the background.</p>
+          <div class="amount"><%= fmtINR(service.price_from) %> <small><%= service.price_unit %></small></div>
+          <p class="pnote"><%= service.price_note %></p>
+          <div class="dash-row"><span>Delivery timeline</span><b><%= service.timeline %></b></div>
+          <div class="dash-row"><span>Revisions</span><b>Included</b></div>
+          <div class="dash-row"><span>Support after delivery</span><b>Yes</b></div>
+          <div style="margin-top:26px; display:grid; gap:12px;">
+            <a class="btn btn-primary" href="/signup" style="justify-content:center">Request this service <span class="arr">→</span></a>
+            <a class="btn btn-ghost" href="/contact" style="justify-content:center">Ask a question first</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <div style="position:relative; z-index:2">
+          <h2>Ready when you are</h2>
+          <p>Create a free account, describe your business in a few lines, and we will confirm your plan and timeline. No payment needed to request.</p>
+          <a class="btn btn-primary" href="/signup">Create free account <span class="arr">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>

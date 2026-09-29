@@ -1,0 +1,32 @@
+<%- include('../partials/head') %>
+<%- include('../partials/nav') %>
+<div class="admin-shell">
+  <%- include('../partials/admin-side') %>
+  <div class="admin-main">
+    <h1>Services</h1>
+    <p class="admin-sub">Edit names, pricing and descriptions. Changes go live on the site immediately.</p>
+    <% if (ok) { %><div class="alert ok" role="status"><%= ok %></div><% } %>
+    <% if (err) { %><div class="alert err" role="alert"><%= err %></div><% } %>
+    <div class="panel">
+      <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Service</th><th>Price</th><th>Timeline</th><th>Status</th><th></th></tr></thead>
+        <tbody>
+          <% services.forEach(function(s) { %>
+          <tr>
+            <td><b><%= s.name %></b><br><span style="color:var(--dim); font-size:0.82rem">/services/<%= s.slug %></span></td>
+            <td style="white-space:nowrap"><%= fmtINR(s.price_from) %> <span style="color:var(--dim)"><%= s.price_unit %></span></td>
+            <td><%= s.timeline %></td>
+            <td><span class="status <%= s.active ? 'Completed' : 'Cancelled' %>"><%= s.active ? 'Live' : 'Hidden' %></span></td>
+            <td><a class="mini-btn" href="/admin/services/<%= s.id %>/edit" style="text-decoration:none; display:inline-block;">Edit</a></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/js/main.js" defer></script>
+</body>
+</html>

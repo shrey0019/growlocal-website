@@ -1,0 +1,65 @@
+<%- include('../partials/head') %>
+<%- include('../partials/nav') %>
+
+<main>
+  <section class="hero" style="min-height:52svh; padding-bottom:40px;">
+    <div class="aurora" aria-hidden="true">
+      <div class="blob b2" data-parallax="-0.08"></div>
+      <div class="blob b3" data-parallax="0.18"></div>
+    </div>
+    <div class="wrap" style="position:relative; z-index:2">
+      <span class="eyebrow reveal">Contact</span>
+      <h1 class="reveal"><span class="kinetic">Tell us about</span> <span class="kinetic">your <span class="grad-text">business.</span></span></h1>
+      <p class="lead reveal" style="--d:0.15s">Write a few lines about what you sell. We reply within one business day with honest advice and a fixed quote if we are a fit.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:10px;">
+    <div class="wrap split" style="align-items:start">
+      <div class="reveal-l">
+        <div class="form-card" style="margin:0">
+          <% if (ok) { %><div class="alert ok" role="status"><%= ok %></div><% } %>
+          <% if (err) { %><div class="alert err" role="alert"><%= err %></div><% } %>
+          <form method="POST" action="/contact">
+            <div class="field">
+              <label for="c-name">Your name</label>
+              <input id="c-name" name="name" type="text" required autocomplete="name" placeholder="e.g. Rohan Sharma">
+            </div>
+            <div class="field">
+              <label for="c-email">Email</label>
+              <input id="c-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+            </div>
+            <div class="field">
+              <label for="c-phone">Phone / WhatsApp</label>
+              <input id="c-phone" name="phone" type="tel" required autocomplete="tel" placeholder="+91 ...">
+            </div>
+            <div class="field">
+              <label for="c-business">Business type <span style="color:var(--dim); font-weight:400;">(optional)</span></label>
+              <input id="c-business" name="business" type="text" placeholder="e.g. Gym in Bhopal">
+            </div>
+            <div class="field">
+              <label for="c-message">What do you need?</label>
+              <textarea id="c-message" name="message" required placeholder="A few lines about your business and what you want: more walk-ins, online orders, admissions..."></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit" style="width:100%; justify-content:center">Send message <span class="arr">→</span></button>
+          </form>
+        </div>
+      </div>
+      <div class="reveal-r">
+        <span class="eyebrow">Direct lines</span>
+        <h2 class="section-title" style="font-size:clamp(1.6rem,3vw,2.2rem)">Prefer talking?</h2>
+        <ul class="check-list">
+          <li><span class="tick">✉</span><span><b><%= brand.email %></b><br>For quotes, questions and everything else.</span></li>
+          <li><span class="tick">☏</span><span><b><%= brand.phone %></b><br><%= brand.hours %>.</span></li>
+          <li><span class="tick">◈</span><span><b><%= brand.city %></b><br>Working remotely with businesses across India.</span></li>
+        </ul>
+        <div class="panel" style="margin-top:30px">
+          <h2 style="font-size:1.15rem">What happens next</h2>
+          <p class="psub" style="margin-bottom:0">We read every message ourselves. Within one business day you get a reply from a real person: either a fixed quote, a few sharp questions, or an honest "this is not worth your money right now".</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>

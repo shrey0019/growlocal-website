@@ -1,0 +1,78 @@
+<%- include('../partials/head') %>
+<%- include('../partials/nav') %>
+
+<main>
+  <section style="padding:140px 0 80px; position:relative;">
+    <div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div></div>
+    <div class="wrap" style="position:relative; z-index:2">
+      <div class="dash-head reveal">
+        <div>
+          <span class="eyebrow">My dashboard</span>
+          <h1 style="font-size:clamp(1.8rem,4vw,2.6rem)">Hello, <%= user.name %></h1>
+        </div>
+        <form method="POST" action="/logout"><button class="btn btn-ghost btn-sm" type="submit">Log out</button></form>
+      </div>
+
+      <% if (ok) { %><div class="alert ok" role="status"><%= ok %></div><% } %>
+      <% if (err) { %><div class="alert err" role="alert"><%= err %></div><% } %>
+
+      <div class="panel reveal">
+        <h2>My profile</h2>
+        <p class="psub">Your account details.</p>
+        <div class="profile-grid">
+          <div class="profile-item"><div class="k">Name</div><div class="v"><%= user.name %></div></div>
+          <div class="profile-item"><div class="k">Email</div><div class="v"><%= user.email %></div></div>
+          <div class="profile-item"><div class="k">Member since</div><div class="v"><%= user.created_at.slice(0, 10) %></div></div>
+        </div>
+      </div>
+
+      <div class="panel reveal">
+        <h2>Request a service</h2>
+        <p class="psub">Pick a service and tell us about your business. We confirm the plan and timeline before anything is billed.</p>
+        <form method="POST" action="/dashboard/request">
+          <div class="field">
+            <label for="r-service">Service</label>
+            <select id="r-service" name="service_id" required>
+              <option value="">Choose a service...</option>
+              <% services.forEach(function(s) { %>
+              <option value="<%= s.id %>"><%= s.name %> · from <%= fmtINR(s.price_from) %> <%= s.price_unit %></option>
+              <% }); %>
+            </select>
+          </div>
+          <div class="field">
+            <label for="r-details">About your business</label>
+            <textarea id="r-details" name="details" required placeholder="What do you sell, where are you located, and what should this service achieve for you?"></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Send request <span class="arr">→</span></button>
+        </form>
+      </div>
+
+      <div class="panel reveal">
+        <h2>My orders</h2>
+        <p class="psub">Every request you have made, with its current status.</p>
+        <% if (orders.length === 0) { %>
+        <div class="empty"><div class="big-e">📦</div><p>No orders yet. Your requests will appear here once you send one above.</p></div>
+        <% } else { %>
+        <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Order</th><th>Service</th><th>Your brief</th><th>Status</th><th>Date</th></tr></thead>
+          <tbody>
+            <% orders.forEach(function(o) { %>
+            <tr>
+              <td><b>#<%= o.id %></b></td>
+              <td><%= o.service_name %></td>
+              <td style="max-width:280px"><%= o.details %></td>
+              <td><span class="status <%= o.status.replace(' ', '') %>"><%= o.status %></span></td>
+              <td style="white-space:nowrap"><%= o.created_at.slice(0, 10) %></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>

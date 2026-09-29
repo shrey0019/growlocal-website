@@ -1,0 +1,173 @@
+<%- include('../partials/head') %>
+<%- include('../partials/nav') %>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="aurora" aria-hidden="true">
+      <div class="blob b1" data-parallax="0.12"></div>
+      <div class="blob b2" data-parallax="-0.08"></div>
+      <div class="blob b3" data-parallax="0.2"></div>
+    </div>
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Digital services for local businesses</span>
+        <h1>
+          <span class="kinetic">Your business,</span>
+          <span class="kinetic"><span class="grad-text">everywhere</span> customers look.</span>
+        </h1>
+        <p class="hero-sub">We make the reels, websites and WhatsApp systems that bring local businesses more customers. Prices fixed upfront. Work delivered in days, not months. Based in Bhopal, working with businesses across India.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="/services">See services <span class="arr">→</span></a>
+          <a class="btn btn-ghost" href="/contact">Free consultation</a>
+        </div>
+        <div class="hero-proof">
+          <span class="proof-item"><span class="dot"></span>Fixed pricing, quoted upfront</span>
+          <span class="proof-item"><span class="dot"></span>First draft in 48 hours</span>
+          <span class="proof-item"><span class="dot"></span>Support in English and Hindi</span>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="float-chip c1">New enquiry <b>+1</b> · WhatsApp</div>
+        <div class="dash-card">
+          <div class="dash-row"><span>Reel views this week</span><span class="pill live">+212%</span></div>
+          <div class="dash-row"><span>Google profile calls</span><span class="pill live">+68%</span></div>
+          <div class="dash-row"><span>WhatsApp chats answered</span><span class="pill hot">auto</span></div>
+          <div class="spark"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="float-chip c2">Website enquiry <b>received</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-band" aria-hidden="true">
+    <div class="marquee">
+      <span>Reel Editing</span><span>WhatsApp Automation</span><span>Social Media</span><span>Websites</span><span>Google Business Profile</span><span>Lead Generation</span><span>Pitch Decks</span>
+      <span>Reel Editing</span><span>WhatsApp Automation</span><span>Social Media</span><span>Websites</span><span>Google Business Profile</span><span>Lead Generation</span><span>Pitch Decks</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <div class="center reveal">
+        <span class="eyebrow">Services</span>
+        <h2 class="section-title">Everything a local business needs to get found</h2>
+        <p class="lead">Seven services. Each one does a single job well, has a fixed price, and ships fast. Pick what you need, skip what you don't.</p>
+      </div>
+      <div class="cards">
+        <% const icons = {'short-form-video-editing':'🎬','whatsapp-business-automation':'💬','social-media-management':'📱','business-websites':'🌐','google-business-profile':'📍','lead-generation':'🎯','pitch-deck-design':'📊'}; %>
+        <% services.forEach(function(s, i) { %>
+        <a class="card reveal" style="--d:<%= (i % 3) * 0.1 %>s" href="/services/<%= s.slug %>">
+          <% if (s.badge) { %><span class="badge-flag"><%= s.badge %></span><% } %>
+          <div class="icon" aria-hidden="true"><%= icons[s.slug] || '✦' %></div>
+          <h3><%= s.name %></h3>
+          <p><%= s.short %></p>
+          <div class="price"><%= fmtINR(s.price_from) %> <small><%= s.price_unit %></small></div>
+          <span class="go">Details <span class="arr">→</span></span>
+        </a>
+        <% }); %>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section>
+    <div class="wrap">
+      <div class="center reveal">
+        <span class="eyebrow">Why this works</span>
+        <h2 class="section-title">The numbers behind what we sell</h2>
+        <p class="lead">We don't sell services because they sound good. We sell them because the data says customers are already there.</p>
+      </div>
+      <div class="stats-band">
+        <div class="stat reveal" style="--d:0s">
+          <div class="num"><span data-count="97" data-suffix="%">0%</span></div>
+          <div class="lbl">of Indians watch short-form video every single day (Meta/Ipsos, 2025)</div>
+        </div>
+        <div class="stat reveal" style="--d:0.1s">
+          <div class="num"><span data-count="91" data-suffix="%">0%</span></div>
+          <div class="lbl">chat with businesses on WhatsApp every week (Meta, 2025)</div>
+        </div>
+        <div class="stat reveal" style="--d:0.2s">
+          <div class="num"><span data-count="1" data-suffix="%">0%</span></div>
+          <div class="lbl">of sampled MSMEs have a working website at all (SERP Forge study)</div>
+        </div>
+        <div class="stat reveal" style="--d:0.3s">
+          <div class="num"><span data-count="90" data-suffix="%">0%</span></div>
+          <div class="lbl">of small businesses use social media for business (CPA Australia, 2025)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section>
+    <div class="wrap">
+      <div class="center reveal">
+        <span class="eyebrow">How it works</span>
+        <h2 class="section-title">From first call to first customer in three steps</h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal" style="--d:0s">
+          <div class="n">01</div>
+          <h3>Tell us about your business</h3>
+          <p>A 15 minute call or a short form. We ask what you sell, who buys it, and what a good month looks like for you.</p>
+        </div>
+        <div class="step reveal" style="--d:0.12s">
+          <div class="n">02</div>
+          <h3>We build and launch</h3>
+          <p>You get a fixed quote and a delivery date before we start. Then we do the work while you run your shop.</p>
+        </div>
+        <div class="step reveal" style="--d:0.24s">
+          <div class="n">03</div>
+          <h3>Customers start coming in</h3>
+          <p>Reels go out, WhatsApp answers itself, your Google profile climbs. You watch the enquiries come in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPLIT FEATURE -->
+  <section>
+    <div class="wrap split">
+      <div class="reveal-l">
+        <span class="eyebrow">Why GrowLocal</span>
+        <h2 class="section-title">One partner instead of five freelancers</h2>
+        <p class="lead">Most owners we talk to have the same story: a cousin made the logo, a freelancer ghosted them halfway through the website, and nobody replies about the Instagram page. We built GrowLocal to be the opposite of that.</p>
+        <ul class="check-list">
+          <li><span class="tick">✓</span><span><b>One fixed quote before we start.</b> No hourly billing, no surprise extras halfway through.</span></li>
+          <li><span class="tick">✓</span><span><b>One person who knows your business.</b> You never have to explain your shop twice.</span></li>
+          <li><span class="tick">✓</span><span><b>A short video with every delivery.</b> We show you exactly how to use what we built.</span></li>
+          <li><span class="tick">✓</span><span><b>Support after launch.</b> Something breaks or confuses you, we fix it. That is the whole point.</span></li>
+        </ul>
+        <div style="margin-top:34px"><a class="btn btn-primary" href="/about">More about us <span class="arr">→</span></a></div>
+      </div>
+      <div class="reveal-r">
+        <div class="art-frame" role="img" aria-label="Abstract illustration of connected growth rings">
+          <div class="rings" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="art-core">
+            <div class="big grad-text">One team.<br>Every channel.</div>
+            <p style="color:var(--muted); margin-top:14px">Reels · WhatsApp · Website · Google · Leads</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <div class="aurora" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div></div>
+        <div style="position:relative; z-index:2">
+          <h2>Not sure what your business needs?</h2>
+          <p>Get a free 15 minute consultation. Tell us what you sell, and we will tell you honestly what will work for you and what would be a waste of money right now.</p>
+          <a class="btn btn-primary" href="/contact">Book my free consultation <span class="arr">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>
